@@ -1,0 +1,3 @@
+Section 2.2.4 of SICP presents a simple language for drawing pictures that illustrates the power of data abstraction and closure, and also exploits higher-order procedures in an essential way. Try to implement it in Python.
+
+The picture language is based on the language Peter Henderson created to construct images like M.C. Escher's "Square Limit" woodcut.
