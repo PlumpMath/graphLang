@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 
 # Part 1. High level action model
 
-def wave2():
-    return besides(flip_vert(wave))
+def wave2(): return besides(flip_vert(wave))
 #def wave4(): return below(wave2, wave2)
 
 def flipped_pairs(painter):
     painter2 = beside(painter, flip_vert(painter))
+    return below(painter2, painter2)
 
 def wave4() : return flipped_pairs(wave)
 
@@ -17,8 +17,8 @@ def right_split(painter, n):
     return beside(painter, below(smaller, smaller))
 
 #def up_split(painter, n) : pass
-def flip_horiz(painter) : pass
 #def flip_vert(painter) : pass #defined in part 5
+def flip_horiz(painter) : pass
 def identity(painter) : pass
 def rotate180(painter): pass
 
@@ -54,7 +54,7 @@ def flipped_pairs2(painter):
 def square_pairs2(painter):
     return square_of_four(flip_horiz, identity, rotate180, flip_vert)
 
-# Right-splitand up-splitcan be expressed as instances of a general splitting 
+# Right-split and up-split can be expressed as instances of a general splitting 
 # operation
 def split() : pass
 def right_split2() : return split(beside, below)
@@ -101,7 +101,9 @@ def segment2painter(segment_list):
     return foo
 
 def draw_line(start, end) :
-    plt.plot(start, end)
+    #plt.plot(start, end)
+    # Need to investigate into Matplot
+    pass
 
 # A example
 squarePainter = segment2painter([(0, 0.5), (0.5,1), (1, 0.5), (0.5, 0)])
