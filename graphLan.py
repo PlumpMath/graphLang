@@ -18,7 +18,7 @@ def right_split(painter, n):
 
 #def up_split(painter, n) : pass
 #def flip_vert(painter) : pass #defined in part 5
-def flip_horiz(painter) : pass
+#def flip_horiz(painter) : pass
 def identity(painter) : pass
 def rotate180(painter): pass
 
@@ -54,7 +54,7 @@ def flipped_pairs2(painter):
 def square_pairs2(painter):
     return square_of_four(flip_horiz, identity, rotate180, flip_vert)
 
-# Right-split and up-split can be expressed as instances of a general splitting 
+# Right-split and up-split can be also expressed as instances of a general splitting 
 # operation
 def split() : pass
 def right_split2() : return split(beside, below)
@@ -93,6 +93,8 @@ def edge1_frame(f) : return f[1]
 def edge2_frame(f) : return f[2]
 
 ## Part 4. Painter
+# A painter is represented as a procedure that, given a frame as argument, 
+# draws a particular image shifted and scaled to fit the frame.
 def segment2painter(segment_list):
     def foo(frame):
         for seg in segment_list:
@@ -102,11 +104,13 @@ def segment2painter(segment_list):
 
 def draw_line(start, end) :
     #plt.plot(start, end)
-    # Need to investigate into Matplot
+    # Need to investigate into Matplotlib
     pass
 
-# A example
+# A painting example
 squarePainter = segment2painter([(0, 0.5), (0.5,1), (1, 0.5), (0.5, 0)])
+frame = make_frame(make_vect(0,0), make_vect(0, 5), make_vect(5, 0))
+squarePainter(frame)
 
 #Part 5. Transforming and combining painters
 def transform_painter(painter, origin, corner1, corner2):
@@ -122,3 +126,20 @@ def transform_painter(painter, origin, corner1, corner2):
 def flip_vert(painter):
     return transform_painter(painter, make_vect(0, 1.0),
             make_vect(1.0, 1.0), make_vect(0, 0))
+def flip_horiz(painter):
+    pass
+
+def rotate90(painter):
+	return transform_painter(painter, make_vect(1., 1.), 
+            make_vect(1., 1.), make_vect(0, 0))
+def ratate180(painter): pass
+
+def beside(painter1, painter2):
+    split_point = make_vect(0.5, 0)
+    paint_left = transform_painter(painter1, make_vect(0,0), 
+			split_point, make_vect(0, 1.))
+    paint_left = transform_painter(painter2, make_vect(1.,1.), 
+			split_point, make_vect(0.5, 1.))
+    def foo(frame): paint_left(frame); paint_right(frame)
+    return foo
+def below(painter1, painter2): pass
